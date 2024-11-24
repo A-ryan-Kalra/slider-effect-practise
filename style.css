@@ -260,6 +260,7 @@ body {
     width: 150px;
     height: 200px;
     border-radius: 10px;
+    object-position: 60% 50%;
   }
 }
 
@@ -312,5 +313,14 @@ body {
   }
   .carousel .lists .item .list-details .topic {
     font-size: 3.1rem;
+  }
+  .arrows {
+    z-index: 1;
+    /* background-color: #eb7119; */
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    gap: 1rem;
+    display: flex;
   }
 }
