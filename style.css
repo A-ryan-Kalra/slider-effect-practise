@@ -217,22 +217,39 @@ body {
 
 .carousel.next .thumbnail {
   transform: translateX(150px);
-  animation: shiftThumbnails 0.5s linear forwards;
+  animation: shiftThumbnailsLeft 0.5s linear forwards;
 }
 
-@keyframes shiftThumbnails {
+@keyframes shiftThumbnailsLeft {
   to {
     transform: translateX(0);
   }
 }
 
-.carousel.prev .lists .item:nth-child(1) img {
+.carousel.prev .lists .item:nth-child(2) .author,
+.carousel.prev .lists .item:nth-child(2) .heading,
+.carousel.prev .lists .item:nth-child(2) .topic,
+.carousel.prev .lists .item:nth-child(2) .description {
+  animation: hideContent 0.7s linear forwards;
+}
+
+@keyframes hideContent {
+  to {
+    transform: translateY(-150px);
+    filter: blur(20px);
+    opacity: 0;
+  }
+}
+
+.carousel.prev .lists .item:nth-child(2) {
+  z-index: 2;
+}
+
+.carousel.prev .lists .item:nth-child(2) img {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  animation: downscaleHeight 0.5s linear forwards;
+  animation: downscaleHeight 0.8s linear forwards;
 }
 
 @keyframes downscaleHeight {
@@ -243,5 +260,57 @@ body {
     width: 150px;
     height: 200px;
     border-radius: 10px;
+  }
+}
+
+.carousel.prev .thumbnail .item:nth-child(1) {
+  width: 0;
+  overflow: hidden;
+  opacity: 0;
+  animation: transformThumbnail 0.5s linear forwards;
+}
+
+@keyframes shiftThumbnailsRight {
+  to {
+    transform: translateX(150px);
+  }
+}
+
+.carousel.next button,
+.carousel.prev button {
+  pointer-events: none;
+}
+
+.time {
+  position: absolute;
+  height: 3px;
+  top: 0;
+  background-color: #eb7119;
+  z-index: 1;
+  width: 0%;
+}
+@keyframes timeRunning {
+  to {
+    width: 0%;
+  }
+}
+.carousel.next .time,
+.carousel.prev .time {
+  width: 100%;
+  animation: timeRunning 2500ms linear forwards;
+}
+
+@media screen and (max-width: 723px) {
+  .carousel .lists .item .list-details {
+    padding-right: 0;
+  }
+  .carousel .lists .item .list-details .author {
+    font-size: x-small;
+  }
+  .carousel .lists .item .list-details .heading {
+    font-size: 3.2rem;
+  }
+  .carousel .lists .item .list-details .topic {
+    font-size: 3.1rem;
   }
 }
