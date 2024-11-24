@@ -87,17 +87,15 @@ body {
 }
 .thumbnail {
   position: absolute;
+  z-index: 100;
   bottom: 50px;
   left: 50%;
-  z-index: 100;
-
   width: max-content;
-}
-.thumbnail .lists {
   display: flex;
   gap: 1rem;
 }
-.thumbnail .lists .item {
+
+.thumbnail .item {
   width: 150px;
   height: 200px;
   position: relative;
@@ -105,11 +103,22 @@ body {
   overflow: hidden;
 }
 
-.thumbnail .lists .item img {
+.thumbnail .item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 60% 50%;
+}
+.thumbnail .item .item-content {
+  position: absolute;
+  bottom: 10%;
+  left: 10%;
+}
+.thumbnail .item .item-content .name {
+  font-size: medium;
+}
+.thumbnail .item .item-content .family {
+  font-size: small;
 }
 .arrows {
   z-index: 1;
@@ -169,4 +178,70 @@ body {
 
 .carousel .lists .item:nth-child(1) .topic {
   animation-delay: 1.3s;
+}
+
+.carousel.next .lists .item:nth-child(1) img {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  width: 150px;
+  background-color: #eb7119;
+  height: 200px;
+  border-radius: 10px;
+  animation: showImage 0.8s forwards;
+}
+
+@keyframes showImage {
+  to {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    border-radius: 10px;
+  }
+}
+
+.carousel.next .thumbnail .item:nth-last-child(1) {
+  width: 0;
+  overflow: hidden;
+  animation: transformThumbnail 0.5s linear forwards;
+}
+
+@keyframes transformThumbnail {
+  to {
+    width: 150px;
+  }
+}
+
+.carousel.next .thumbnail {
+  transform: translateX(150px);
+  animation: shiftThumbnails 0.5s linear forwards;
+}
+
+@keyframes shiftThumbnails {
+  to {
+    transform: translateX(0);
+  }
+}
+
+.carousel.prev .lists .item:nth-child(1) img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: downscaleHeight 0.5s linear forwards;
+}
+
+@keyframes downscaleHeight {
+  to {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    width: 150px;
+    height: 200px;
+    border-radius: 10px;
+  }
 }
